@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1606976395580",
+        "brand": "Toyota",
+        "model": "Corolla",
+        "price": "21000",
+        "available": false
+    },
+    {
+        "id": "1606977163412",
+        "brand": "Volkswagen",
+        "model": "Golf",
+        "price": "30000",
+        "available": "true"
+    },
+    {
+        "id": "1607033797705",
+        "brand": "Toyota",
+        "model": "Rav4",
+        "price": "40000",
+        "available": "true"
+    }
+]
