@@ -64,7 +64,13 @@ const Car = ({ car, refreshCars }) => {
     }, []);
 
     const handleUserNameSelection = (e) => {
-        console.log(e.target.value);
+        console.log('Value:', e.target.value);
+
+        if (e.target.value === '') {
+            return;
+        }
+
+        console.log('Update car');
 
         fetch(`http://localhost:8800/cars/${car.id}`, {
             method: 'PUT',
@@ -76,7 +82,7 @@ const Car = ({ car, refreshCars }) => {
         })
             .then(() => {
                 refreshCars();
-            })
+            });
     };
 
     let updateFormJSX = open ? (
@@ -93,79 +99,67 @@ const Car = ({ car, refreshCars }) => {
     ) : null;
 
     return (
-        <div className='flex-container'>
-            <div className='table-container'>
-                <table className='table' style={{ width: "100%", color: car.userId ? 'blue' : '' }}>
-                    <tr className='table-head'>
-                        <th>Brand</th>
-                        <th>Model</th>
-                        <th>Price</th>
-                        <th className='table-button'>
-                            <div className='btn'>
-                                <ul className='button-list'>
-                                    <li> <button
-                                        className='btn-return'
-                                        onClick={handleReturnStatus}
-                                    >
-                                        Return
-                                    </button></li>
-                                    <li>
-                                        <button
-                                            className='btn-delete'
-                                            onClick={deleteCar}
-                                        >
-                                            Delete
+        <tr>
+            <td>{car.brand}</td>
+            <td>{car.model}</td>
+            <td>{car.price}</td>
+            <td>
+                <ul className='button-list'>
+                    <li>
+                        <button
+                            className='btn btn-return'
+                            onClick={handleReturnStatus}
+                        >
+                            Return
+                                    </button>
+                    </li>
+                    <li>
+                        <button
+                            className='btn btn-update'
+                            type='submit'
+                            onClick={() => {
+                                setOpen(!open);
+                            }}>
+                            Update User
+                                    </button>
+                    </li>
+                    <li>
+                        <button
+                            className='btn btn-delete'
+                            onClick={deleteCar}
+                        >
+                            Delete
                                         </button>
-                                    </li>
-                                    <li>
-                                        <button
-                                            className='btn-update'
-                                            type='submit'
-                                            onClick={() => {
-                                                setOpen(!open);
-                                            }}>
-                                            Update User
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>{car.brand}</td>
-                        <td>{car.model}</td>
-                        <td>{car.price}</td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-
-            {user ? `Rented By: ${user.name}` : null}
-            <div className='btn'>
-                <button
-                    className='btn-return'
-                    onClick={handleReturnStatus}
-                >
-                    Return
-                </button>
-                <button
-                    className='btn-delete'
-                    onClick={deleteCar}
-                >
-                    Delete
-                </button>
-                <button
-                    className='btn-update'
-                    type='submit'
-                    onClick={() => {
-                        setOpen(!open);
-                    }}>
-                    Update User
-                </button>
-            </div>
-
-            {updateFormJSX}
-        </div>
+                    </li>
+                </ul>
+            </td>
+            <td>
+                {user ? `Rented By: ${user.name}` : null}
+                {/* <div className='btn'>
+        //     <button
+        //         className='btn-return'
+        //         onClick={handleReturnStatus}
+        //     >
+        //         Return
+        //     </button>
+        //     <button
+        //         className='btn-delete'
+        //         onClick={deleteCar}
+        //     >
+        //         Delete
+        //     </button>
+        //     <button
+        //         className='btn-update'
+        //         type='submit'
+        //         onClick={() => {
+        //             setOpen(!open);
+        //         }}>
+        //         Update User
+        //     </button>
+        // </div> */}
+                {updateFormJSX}
+            </td>
+        </tr>
     );
 };
 

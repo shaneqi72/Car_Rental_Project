@@ -4,20 +4,20 @@
         "brand": "Volkswagen",
         "model": "Golf",
         "price": "21000",
-        "userId": null
+        "userId": "1607333763189"
     },
     {
         "id": "1607333885006",
         "brand": "Volkswagen",
         "model": "GTI",
         "price": "50000",
-        "userId": null
+        "userId": "3"
     },
     {
         "id": "1607852292604",
         "brand": "Toyota",
         "model": "Corolla",
         "price": "30000",
-        "userId": null
+        "userId": "1607333689456"
     }
 ]

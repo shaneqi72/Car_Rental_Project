@@ -1,27 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
+import './Form.css'
 
-function Form({ refreshCars, status, setStatus }) {
+const Form = ({ refreshCars, status, setStatus }) => {
 
     const [inputBrand, setInputBrand] = useState('');
     const [inputModel, setInputModel] = useState('');
     const [inputPrice, setInputPrice] = useState('');
-    const [inputAvailable, setInputAvailable] = useState('')
+    const [inputUsers, setInputUsers] = useState('')
+
+    const handleInputBrand = (e) => {
+        setInputBrand(e.target.value)
+    }
+    const handleInputModel = (e) => {
+        setInputModel(e.target.value)
+    }
+    const handleInputPrice = (e) => {
+        setInputPrice(e.target.value)
+    }
 
 
+    const handleChange = (e) => {
+        setStatus(e.target.value)
+    }
 
+    const handleInputUserName = (e) => {
+        setInputUsers(e.target.value)
+    }
 
-    function handleAddCar(e) {
+    const handleUserSubmit = (e) => {
+        // e.preventDefault();
+
+        const newUser = {
+            id: `${Date.now()}`,
+            name: inputUsers
+        }
+
+        if (newUser.name.length > 0) {
+            fetch('http://localhost:8800/users', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newUser)
+            })
+                .then((res) => res.json())
+                .then((users) => setInputUsers(users))
+                .catch((err) => console.log(err))
+        }
+        setInputUsers('');
+        refreshCars();
+    }
+
+    useEffect(() => {
+        handleUserSubmit()
+    }, []);
+
+    const handleAddCar = (e) => {
         e.preventDefault();
 
         const newCar = {
             id: `${Date.now()}`,
             brand: inputBrand,
             model: inputModel,
-            price: inputPrice,
-            available: inputAvailable
+            price: inputPrice
         }
 
-        if (newCar.brand.length && newCar.model.length && newCar.price.length && newCar.available.length > 0) {
+        if (newCar.brand.length && newCar.model.length && newCar.price.length > 0) {
             fetch('http://localhost:8800/cars', {
                 method: 'POST',
                 headers: {
@@ -36,45 +81,40 @@ function Form({ refreshCars, status, setStatus }) {
         setInputBrand('');
         setInputModel('');
         setInputPrice('');
-        setInputAvailable('');
     };
 
 
-    function handleInputBrand(e) {
-        setInputBrand(e.target.value)
-    }
-    function handleInputModel(e) {
-        setInputModel(e.target.value)
-    }
-    function handleInputPrice(e) {
-        setInputPrice(e.target.value)
-    }
-    function handleInputAvailable(e) {
-        setInputAvailable(e.target.value)
-    }
 
-    function handleChange(e) {
-        setStatus(e.target.value)
-    }
 
     return (
-        <form >
-            <label htmlFor="brand">Brand:</label>
-            <input type="text" value={inputBrand} name='brand' onChange={handleInputBrand} />
-            <label htmlFor="model">Model:</label>
-            <input type="text" value={inputModel} name='model' onChange={handleInputModel} />
-            <label htmlFor="price">Price:</label>
-            <input type="text" value={inputPrice} name='price' onChange={handleInputPrice} />
-            <label htmlFor="available">Available:</label>
-            <input type="text" value={inputAvailable} name='available' onChange={handleInputAvailable} />
-            <button type='submit' onClick={handleAddCar}>Add new Car</button>
-            <div>
-                <select name="cars" onChange={handleChange}>
-                    <option value="allCars">All Cars</option>
-                    <option value="availableCars">Available Cars</option>
-                    <option value="unavailableCars">Unavailable Cars</option>
-                </select>
+        <form className='form-container'>
+            <div className='form-add-new-car'>
+                <label htmlFor="brand">Brand:</label>
+                <input className='input-box' required type="text" value={inputBrand} name='brand' onChange={handleInputBrand} />
+                <label htmlFor="model">Model:</label>
+                <input className='input-box' required type="text" value={inputModel} name='model' onChange={handleInputModel} />
+                <label htmlFor="price">Price:</label>
+                <input className='input-box' required type="text" value={inputPrice} name='price' onChange={handleInputPrice} />
+                <button className='btn submit-btn' type='submit' onClick={handleAddCar}>Add new Car</button>
             </div>
+
+            <div className='flex-container-addUser-selector'>
+                <div className='add-user'>
+                    <label htmlFor="user-name">User Name: </label>
+                    <input className='input-box' type="text" required value={inputUsers} name='userName' onChange={handleInputUserName} />
+                    <button className='btn submit-btn' onClick={handleUserSubmit} type='submit'>Add New User</button>
+                </div>
+
+                <div className='selector'>
+                    <select className='status-selector' name="cars" onChange={handleChange}>
+                        <option value="allCars">All Cars</option>
+                        <option value="availableCars">Available Cars</option>
+                        <option value="unavailableCars">Unavailable Cars</option>
+                    </select>
+                </div>
+            </div>
+
+
         </form>
     )
 };
