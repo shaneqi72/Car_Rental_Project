@@ -28,9 +28,9 @@ function UpdateCar({ car, refreshCars }) {
             brand: inputBrand,
             model: inputModel,
             price: inputPrice,
-            available: inputAvailable
+            available: true
         }
-        if (updatedCar.brand.length && updatedCar.model.length && updatedCar.price.length && updatedCar.available.length > 0) {
+        if (updatedCar.brand.length && updatedCar.model.length && updatedCar.price.length) {
             fetch(`http://localhost:8800/cars/${car.id}`, {
                 method: 'PUT',
                 headers: {

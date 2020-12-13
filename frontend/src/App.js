@@ -10,14 +10,13 @@ import CarsList from './components/CarsList';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-function App() {
+const App = () => {
 
   const [cars, setCars] = useState([]);
   const [status, setStatus] = useState('');
 
 
-
-  function getCars(status) {
+  const getCars = (status) => {
     fetch('http://localhost:8800/cars')
       .then((res) => {
         if (!res.ok) {
@@ -28,10 +27,10 @@ function App() {
       .then((cars) => {
         switch (status) {
           case 'availableCars':
-            setCars(cars.filter((car) => car.available === true));
+            setCars(cars.filter((car) => car.userId === null));
             break;
           case 'unavailableCars':
-            setCars(cars.filter((car) => car.available === false));
+            setCars(cars.filter((car) => car.userId !== null));
             break;
           default:
             setCars(cars);
@@ -60,7 +59,8 @@ function App() {
   // );
 
   return (
-    <div>
+    <div className='app'>
+      <h1>Rental Car Management</h1>
       <Form refreshCars={getCars} status={status} setStatus={setStatus} />
       <Router>
         <CarsList cars={cars} refreshCars={getCars} />

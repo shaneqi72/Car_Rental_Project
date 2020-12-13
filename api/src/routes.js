@@ -1,5 +1,5 @@
 const express = require('express');
-const { readCars, writeCars } = require('./databaseOperations');
+const { readCars, writeCars, readUsers, writeUsers } = require('./databaseOperations');
 
 const router = express.Router();
 
@@ -9,11 +9,11 @@ router.get('/', (req, res) => {
 
 router.get('/cars', (req, res) => {
     let currentCars = readCars();
-    let carAvailable = req.query.available;
+    // let carAvailable = req.query.available;
 
-    if (carAvailable) {
-        currentCars = currentCars.filter((car) => car.available === carAvailable)
-    }
+    // if (carAvailable) {
+    //     currentCars = currentCars.filter((car) => car.available === carAvailable)
+    // }
     res.send(currentCars);
 });
 
@@ -43,7 +43,7 @@ router.post('/cars', (req, res) => {
             brand: req.body.brand,
             model: req.body.model,
             price: req.body.price,
-            available: req.body.available
+            userId: null
         };
 
         currentCars.push(newCar);
@@ -62,7 +62,7 @@ router.put('/cars/:id', (req, res) => {
         updatedCars.brand = req.body.brand;
         updatedCars.model = req.body.model;
         updatedCars.price = req.body.price;
-        updatedCars.available = req.body.available
+        updatedCars.userId = req.body.userId
     } else {
         res.status(404).json({
             message: 'Car not found'
@@ -84,6 +84,45 @@ router.delete('/cars/:id', (req, res) => {
     res.json({
         message: `Car with id of ${req.params.id} has been deleted`
     });
+});
+
+router.get('/users', (req, res) => {
+    let currentUsers = readUsers();
+    res.send(currentUsers);
+})
+
+router.get('/users/:id', (req, res) => {
+    let currentUsers = readUsers();
+
+    const userId = req.params.id;
+    const user = currentUsers.find((user) => user.id === userId);
+
+    if (user) {
+        res.send(user)
+    }
+    res.status(404).json({
+        error: 'Cannot find this user'
+    })
+});
+
+router.post('/users', (req, res) => {
+    const currentUsers = readUsers();
+
+    if (currentUsers.some((user) => user.id === req.body.id)) {
+        res.status(400).send({
+            error: 'This Id is exist'
+        });
+    } else {
+        const newUser = {
+            id: req.body.id,
+            name: req.body.name
+        }
+        currentUsers.push(newUser);
+
+        writeUsers(currentUsers);
+
+        res.json(newUser)
+    };
 });
 
 module.exports = router;

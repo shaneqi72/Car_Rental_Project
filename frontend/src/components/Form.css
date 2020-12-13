@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.status-seletor {
+    margin: 5rem;
+    cursor: pointer;
+}
+
+.submit-btn {
+    font-family: 'Questrial', sans-serif;
+    margin: 1rem;
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg,#619ede,#55e7fc);
+    border: none;
+    font-size: 15px;
+    transition: 1s;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(90deg, rgb(236, 91, 236), rgb(129, 129, 245));
+}
+
+.input-box {
+    margin: 0.5rem;
+    background-color: rgb(228, 222, 222);
+}
+
+.selector {
+    cursor: pointer;
+    margin-left: 200px;
+    padding: 3px;
+}
+
+.btn-addUser {
+    font-family: 'Questrial', sans-serif;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, rgb(236, 91, 236), rgb(129, 129, 245));
+    position: relative;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 5px;
+    border: none;
+    font-size: 15px;
+    position: relative;
+    transition: 1s;
+}
+
+.btn-addUser:hover {
+    background: linear-gradient(90deg,#619ede,#55e7fc);
+}
+
+.flex-container-addUser-selector {
+    display: flex;
+}
+
