@@ -70,6 +70,8 @@ const Car = ({ car, refreshCars }) => {
             return;
         }
 
+
+
         console.log('Update car');
 
         fetch(`http://localhost:8800/cars/${car.id}`, {
@@ -83,12 +85,14 @@ const Car = ({ car, refreshCars }) => {
             .then(() => {
                 refreshCars();
             });
+
+
     };
 
     let updateFormJSX = open ? (
         <form className='select-user'>
             <select name="Users" onChange={handleUserNameSelection} >
-                <option value=''>Select User</option>
+                {car.userId ? null : <option id='first-option' value=''>Select User</option>}
                 {databaseUsers.map((user) => {
                     return (
                         <option key={user.id} value={user.id}>{user.name}</option>
@@ -106,12 +110,12 @@ const Car = ({ car, refreshCars }) => {
             <td>
                 <ul className='button-list'>
                     <li>
-                        <button
+                        {car.userId ? <button
                             className='btn btn-return'
                             onClick={handleReturnStatus}
                         >
                             Return
-                                    </button>
+                                </button> : null}
                     </li>
                     <li>
                         <button
@@ -121,15 +125,17 @@ const Car = ({ car, refreshCars }) => {
                                 setOpen(!open);
                             }}>
                             Update User
-                                    </button>
+                            </button>
                     </li>
                     <li>
-                        <button
-                            className='btn btn-delete'
-                            onClick={deleteCar}
-                        >
-                            Delete
-                                        </button>
+                        {car.userId ? null :
+                            <button
+                                className='btn btn-delete'
+                                onClick={deleteCar}
+                            >
+                                Delete
+                            </button>}
+
                     </li>
                 </ul>
             </td>
@@ -160,6 +166,7 @@ const Car = ({ car, refreshCars }) => {
                 {updateFormJSX}
             </td>
         </tr>
+
     );
 };
 

@@ -1,6 +1,18 @@
 .flex-container {
     display: table;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+
+
+@media (max-width: 500px) {
+    .flex-container {
+        display: flex;
+    }
+    .table-container {
+        width: auto;
+        overflow: auto;
+    }
 }

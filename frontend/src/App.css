@@ -6,25 +6,24 @@
 
 .app {
   background: white;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  min-width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .app h1{
-  margin-bottom: 30px;
+  margin: 1rem;
 }
 
 
 
 
-/* .App {
-  text-align: center;
-}
 
-nav {
+
+/* nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -39,7 +38,7 @@ nav {
   justify-content: space-around;
   align-items: center;
   list-style: none;
-} */
+}  */
 
 .btn
 {
@@ -55,4 +54,17 @@ nav {
     letter-spacing: 0.5px;
     border: none;
     color: #ffffff;
+}
+
+
+@media (max-width: 500px){
+
+  .title {
+    flex: 1;
+    overflow: auto;
+  }
+    .app {
+    flex: 1;
+    overflow: auto;
+    }
 }

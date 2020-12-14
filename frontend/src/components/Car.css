@@ -55,3 +55,23 @@ th, td {
     align-items: flex-start;
     justify-content: flex-end;
 }
+
+
+@media (max-width: 500px){
+th, td {
+    padding: 1px;
+    /* width: 20px; */
+    font-size: 1em;
+    overflow: auto;
+}
+tr {
+    overflow: auto;
+}
+.btn {
+    padding: 2px;
+    overflow: auto;
+}
+.table-container {
+    overflow: auto;
+}
+}

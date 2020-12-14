@@ -89,19 +89,29 @@ const Form = ({ refreshCars, status, setStatus }) => {
     return (
         <form className='form-container'>
             <div className='form-add-new-car'>
-                <label htmlFor="brand">Brand:</label>
-                <input className='input-box' required type="text" value={inputBrand} name='brand' onChange={handleInputBrand} />
-                <label htmlFor="model">Model:</label>
-                <input className='input-box' required type="text" value={inputModel} name='model' onChange={handleInputModel} />
-                <label htmlFor="price">Price:</label>
-                <input className='input-box' required type="text" value={inputPrice} name='price' onChange={handleInputPrice} />
-                <button className='btn submit-btn' type='submit' onClick={handleAddCar}>Add new Car</button>
+                <div className='brand-label-input'>
+                    <label htmlFor="brand">Brand:</label>
+                    <input className='input-box' required type="text" value={inputBrand} name='brand' onChange={handleInputBrand} />
+                </div>
+                <div className='model-label-input'>
+                    <label htmlFor="model">Model:</label>
+                    <input className='input-box' required type="text" value={inputModel} name='model' onChange={handleInputModel} />
+                </div>
+                <div className="price-label-input">
+                    <label htmlFor="price">Price:</label>
+                    <input className='input-box' required type="text" value={inputPrice} name='price' onChange={handleInputPrice} />
+                </div>
+                <div className='add-new-car-btn'>
+                    <button className='btn submit-btn' type='submit' onClick={handleAddCar}>Add new Car</button>
+                </div>
             </div>
 
             <div className='flex-container-addUser-selector'>
                 <div className='add-user'>
                     <label htmlFor="user-name">User Name: </label>
                     <input className='input-box' type="text" required value={inputUsers} name='userName' onChange={handleInputUserName} />
+                </div>
+                <div className='add-new-user'>
                     <button className='btn submit-btn' onClick={handleUserSubmit} type='submit'>Add New User</button>
                 </div>
 

@@ -43,3 +43,38 @@
     display: flex;
 }
 
+.form-add-new-car {
+    display: flex;
+}
+
+@media (max-width: 500px) {
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    .form-add-new-car,
+    .flex-container-addUser-selector,
+    .selector {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    .brand-label-input, 
+    .model-label-input,
+    .price-label-input,
+    .add-new-car-btn,
+    .add-user,
+    .status-seletor,
+    .add-new-user {
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        overflow: auto;
+    }
+}
