@@ -60,7 +60,9 @@ const App = () => {
 
   return (
     <div className='app'>
-      <h1>Rental Car Management</h1>
+      <div className='title'>
+        <h1>Rental Car Management</h1>
+      </div>
       <Form refreshCars={getCars} status={status} setStatus={setStatus} />
       <Router>
         <CarsList cars={cars} refreshCars={getCars} />
