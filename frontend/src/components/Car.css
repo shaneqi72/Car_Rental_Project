@@ -57,7 +57,7 @@ th, td {
 }
 
 
-@media (max-width: 500px){
+@media (max-width: 715px){
 th, td {
     padding: 1px;
     /* width: 20px; */
@@ -66,6 +66,7 @@ th, td {
 }
 tr {
     overflow: auto;
+    width: 50%;
 }
 .btn {
     padding: 2px;
@@ -73,5 +74,8 @@ tr {
 }
 .table-container {
     overflow: auto;
+}
+.flex-container {
+    width: 100%;
 }
 }

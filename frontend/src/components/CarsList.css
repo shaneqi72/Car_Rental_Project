@@ -7,12 +7,15 @@
 
 
 
-@media (max-width: 500px) {
+@media (max-width: 715px) {
     .flex-container {
         display: flex;
     }
     .table-container {
         width: auto;
         overflow: auto;
+    }
+    .table {
+        width: 100%;
     }
 }

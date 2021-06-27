@@ -1,35 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Home from './components/Home';
-import Nav from './components/Nav';
-import Cars from './components/Car';
-import About from './components/About';
-import CarDetail from './components/CarDetail';
-import Form from './components/Form';
-import CarsList from './components/CarsList';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Nav from "./components/Nav";
+import Cars from "./components/Car";
+import About from "./components/About";
+import CarDetail from "./components/CarDetail";
+import Form from "./components/Form";
+import CarsList from "./components/CarsList";
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
-
   const [cars, setCars] = useState([]);
-  const [status, setStatus] = useState('');
-
+  const [status, setStatus] = useState("");
 
   const getCars = (status) => {
-    fetch('http://localhost:8800/cars')
+    fetch("http://localhost:8800/cars")
       .then((res) => {
         if (!res.ok) {
-          throw Error('Error')
+          throw Error("Error");
         }
         return res.json();
       })
       .then((cars) => {
         switch (status) {
-          case 'availableCars':
+          case "availableCars":
             setCars(cars.filter((car) => car.userId === null));
             break;
-          case 'unavailableCars':
+          case "unavailableCars":
             setCars(cars.filter((car) => car.userId !== null));
             break;
           default:
@@ -40,7 +37,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    getCars(status)
+    getCars(status);
   }, [status]);
 
   // return (
@@ -59,8 +56,8 @@ const App = () => {
   // );
 
   return (
-    <div className='app'>
-      <div className='title'>
+    <div className="app">
+      <div className="title">
         <h1>Rental Car Management</h1>
       </div>
       <Form refreshCars={getCars} status={status} setStatus={setStatus} />
@@ -68,7 +65,7 @@ const App = () => {
         <CarsList cars={cars} refreshCars={getCars} />
       </Router>
     </div>
-  )
-}
+  );
+};
 
 export default App;
