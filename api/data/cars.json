@@ -1,17 +1,10 @@
 [
     {
-        "id": "1607852292604",
-        "brand": "Toyota",
-        "model": "Corolla",
-        "price": "30000",
-        "userId": null
-    },
-    {
         "id": "1607902800564",
         "brand": "Mazda",
         "model": "3",
         "price": "25000",
-        "userId": "2"
+        "userId": "4"
     },
     {
         "id": "1614202752998",
@@ -32,6 +25,13 @@
         "brand": "Volkswagen",
         "model": "Golf",
         "price": "30000",
+        "userId": null
+    },
+    {
+        "id": "1632289360033",
+        "brand": "BMW",
+        "model": "330i",
+        "price": "70000",
         "userId": null
     }
 ]
